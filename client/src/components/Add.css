@@ -1,0 +1,38 @@
+/* .add-content {
+    padding: 50px 0;
+    max-width: 600px;
+    margin: 0 auto;
+} */
+
+
+/* .add-content .input-wrapper input {
+    width: 100%;
+    background-color: var(--primary);
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: var(--white);
+    font-size: 1.25rem;
+} */
+
+.search {
+    padding: 10px;
+    font-size: 20px;
+    margin: 30px;
+}
+
+.add {
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    background-image: url("../images/marjan-blan-marjanblan-7xmSu_vWfnc-unsplash.jpg");
+    background-size: cover;
+}
+
+.add-section {
+    background: rgba(55, 54, 54, 0.584);
+    margin: 50px;
+}

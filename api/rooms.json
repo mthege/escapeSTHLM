@@ -1,0 +1,41 @@
+[{
+    "id": 1,
+    "room_name": "Sherlock",
+    "location": "Kungsholmen",
+    "theme": "mystery",
+    "duration": 60,
+    "about": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid a voluptates doloremque enim natus qui ullam pariatur, beatae atque labore quam aperiam excepturi adipisci voluptatum laudantium, ut, nam minus? Ipsam.",
+    "img": "images/sherlock.jpeg"
+}, {
+    "id": 2,
+    "room_name": "Prison Break",
+    "location": "Sergels Torg",
+    "theme": "action",
+    "duration": 60,
+    "about": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid a voluptates doloremque enim natus qui ullam pariatur, beatae atque labore quam aperiam excepturi adipisci voluptatum laudantium, ut, nam minus? Ipsam.",
+    "img": "images/prison.jpeg"
+}, {
+    "id": 3,
+    "room_name": "Stuck in the 80s",
+    "location": "Solna",
+    "theme": "comedy",
+    "duration": 60,
+    "about": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid a voluptates doloremque enim natus qui ullam pariatur, beatae atque labore quam aperiam excepturi adipisci voluptatum laudantium, ut, nam minus? Ipsam.",
+    "img": "images/stuck.jpeg"
+}, {
+    "id": 4,
+    "room_name": "Labyrinth",
+    "location": "Södermalm",
+    "theme": "action",
+    "duration": 60,
+    "about": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid a voluptates doloremque enim natus qui ullam pariatur, beatae atque labore quam aperiam excepturi adipisci voluptatum laudantium, ut, nam minus? Ipsam.",
+    "img": "images/labyrinth.jpeg"
+}, {
+    "id": 5,
+    "room_name": "Catacombs",
+    "location": "Gamla Stan",
+    "theme": "mystery",
+    "duration": 60,
+    "about": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid a voluptates doloremque enim natus qui ullam pariatur, beatae atque labore quam aperiam excepturi adipisci voluptatum laudantium, ut, nam minus? Ipsam.",
+    "img": "images/catacomb.jpeg"
+}]
