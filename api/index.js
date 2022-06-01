@@ -37,7 +37,10 @@ app.post("/rating", (req, res) => {
     const rating = req.body.rating
     const room = req.body.room
 
+    console.log("Adding rating: user: " + user + ", room: " + room + ", rating: " + rating)
+
     rateRoom(user, room, rating);
+    res.send(200);
 });
 
 app.get("/rating", (req, res) => {
@@ -51,6 +54,7 @@ app.post("/saveroom", (req, res) => {
     const room = req.body.room
 
     saveRoom(user, room);
+    res.send(200);
 });
 
 app.get("/savedrooms", (req, res) => {
@@ -90,4 +94,4 @@ app.get("/rooms/:id", (req, res) => {
     res.json(search(Rooms));
 });
 
-app.listen(5000, () => console.log("API is working!"));
+app.listen(5001, () => console.log("API is working!"));

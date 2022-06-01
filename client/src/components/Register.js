@@ -46,7 +46,7 @@ export function Register() {
         e.preventDefault();
         // if button enabled with JS hack
         try {
-            const response = await axios.post(`http://localhost:5000/users/register`,
+            const response = await axios.post(`http://localhost:5001/users/register`,
                 JSON.stringify({ user: user, pwd: pwd }),
                 {
                     headers: { 'Content-Type': 'application/json' }

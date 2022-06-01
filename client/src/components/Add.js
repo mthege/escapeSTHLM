@@ -7,14 +7,13 @@ import './Add.css'
 export function Add() {
 
     const session = useContext(SessionContext);
-    console.log("User (Add): " + session.user)
 
     const [query, setQuery] = useState("");
     const [data, setData] = useState([]);
 
     useEffect(() => {
         const fetchData = async() => {
-            const res = await axios.get(`http://localhost:5000?q=${query}`);
+            const res = await axios.get(`http://localhost:5001?q=${query}`);
             setData(res.data);
         };
         if (query.length === 0 || query.length > 2) fetchData();

@@ -1,19 +1,11 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Button, Col, Row, Card, Container} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SearchRoom.css';
 import StarRating from './StarRating';
-import {SessionContext} from "./UserSession";
 
-export function SearchRoom({data}, user){
-
-    console.log("User (SearchRoom) " + JSON.stringify(user))
-    const session = useContext(SessionContext);
-    if(user === undefined || !(user instanceof String)) {
-        user = session.user
-        console.log("User (SearchRoom 2) " + user)
-    }
+export function SearchRoom({data, user}){
 
      return(
 

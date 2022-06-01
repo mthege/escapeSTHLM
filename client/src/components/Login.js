@@ -5,7 +5,7 @@ import axios from 'axios';
 import Landing from './Landing';
 import Register from './Register';
 import './Register.css'
-const LOGIN_URL = 'http://localhost:5000/users/login';
+const LOGIN_URL = 'http://localhost:5001/users/login';
 
 export function Login() {
 
@@ -61,7 +61,7 @@ return (
                 <h1>You are logged in!</h1>
                 <br />
                 <p>
-                  <Link to="/" elemet={<Landing/>}>Go to Home</Link>
+                  <Link to="/" >Go to Home</Link>
                 </p>
             </section>
         ) : (
@@ -94,7 +94,7 @@ return (
                     Need an Account?<br />
                     <span className="line">
                         {/*put router link here*/}
-                        <Link to = "/register" element={Register}>Sign Up</Link>
+                        <Link to = "/register">Sign Up</Link>
                     </span>
                 </p>
             </section>

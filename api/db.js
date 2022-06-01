@@ -37,10 +37,11 @@ ratingDB.data = []
 await ratingDB.read();
 
 export async function rateRoom(user, room, rating) {
-
     var existing = ratingDB.data.find(rec => rec.user == user && rec.room == room)
     var existingIndex = ratingDB.data.indexOf(existing);
-    ratingDB.data.splice(existingIndex, 1)
+    if(existingIndex >= 0) {
+        ratingDB.data.splice(existingIndex, 1)
+    }
 
     ratingDB.data.push({ user: user, room: room, rating: rating })
     ratingDB.write();

@@ -13,10 +13,12 @@ import {getSessionCookie, SessionContext, setSessionCookie} from './components/U
 //import { GlobalProvider } from "./context/GlobalState";
 
 function App() {
+
   const [session, setSession] = useState(getSessionCookie());
-  //useEffect(() => {
-  //  setSessionCookie(getSessionCookie());
-  //});
+
+  useEffect(() => {
+    setSessionCookie(getSessionCookie());
+  }, [session]);
 
   return (
    <div className="container-app">

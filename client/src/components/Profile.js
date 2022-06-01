@@ -14,13 +14,11 @@ export function Profile(){
 
     useEffect(() => {
         const fetchData = async() => {
-            const res = await axios.get(`http://localhost:5000/savedrooms?user=${user}`);
+            const res = await axios.get(`http://localhost:5001/savedrooms?user=${user}`);
             setData(res.data);
         };
         fetchData();
     }, [user]);
-
-    console.log("DATA: " + JSON.stringify(data))
 
     return(
 

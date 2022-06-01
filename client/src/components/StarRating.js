@@ -11,13 +11,11 @@ const StarRating = (props)=>{
   let user = props.user
   let room = props.room
 
-  console.log("user: (StarRating) " + user)  
-
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
     const fetchData = async() => {
-        const res = await axios.get(`http://localhost:5000/rating?user=${user}&room=${room}`);
+        const res = await axios.get(`http://localhost:5001/rating?user=${user}&room=${room}`);
         setRating(res.data.rating);
     };
     fetchData();
@@ -27,7 +25,8 @@ const StarRating = (props)=>{
     setRating(ratingValue)
 
     try {
-      const response = await axios.post(`http://localhost:5000/rating`,
+      console.log("Time to post a rating... " + JSON.stringify({ user: user, room: room, rating: ratingValue }))
+      const response = await axios.post(`http://localhost:5001/rating`,
           JSON.stringify({ user: user, room: room, rating: ratingValue }),
           {
               headers: { 'Content-Type': 'application/json' }
