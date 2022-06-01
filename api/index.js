@@ -1,6 +1,6 @@
 import express from 'express';
 const app = express();
-import { Users, registerUser, login, Rooms, rateRoom } from "./db.js";
+import { Users, registerUser, login, Rooms, rateRoom, getRating, getSavedRooms, saveRoom } from "./db.js";
 import cors from "cors";
 import bodyParser from "body-parser"
 
@@ -32,11 +32,32 @@ app.post("/users/login", (req, res) => {
     }
 })
 
-app.get("/rating", (req, res) => {
-    const rating = req.query.rating
-    const room = req.query.room
+app.post("/rating", (req, res) => {
+    const user = req.body.user
+    const rating = req.body.rating
+    const room = req.body.room
 
-    rateRoom(rating, room);
+    rateRoom(user, room, rating);
+});
+
+app.get("/rating", (req, res) => {
+    const user = req.query.user
+    const room = req.query.room
+    res.json(getRating(user, room));
+});
+
+app.post("/saveroom", (req, res) => {
+    const user = req.body.user
+    const room = req.body.room
+
+    saveRoom(user, room);
+});
+
+app.get("/savedrooms", (req, res) => {
+    const user = req.query.user
+    console.log("ROOMS: " + "User: " + user + "   " + JSON.stringify(getSavedRooms(user)))
+    var rooms = Rooms.filter(room => getSavedRooms(user).map(item => item.room).includes(room.id))
+    res.json(rooms);
 });
 
 app.get("/", (req, res) => {

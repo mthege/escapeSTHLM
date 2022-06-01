@@ -1,7 +1,54 @@
- img .img-item {
-     height: auto;
+ .img-item {
+     width: 100%;
+     margin: 0;
+     padding: 0;
  }
  /*
 .body-search {
     height: 150vh;
 } */
+ 
+ .container-searchroom {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     background-color: rgba(0, 0, 0, 0.516);
+     background-size: cover;
+     color: rgb(220, 209, 209);
+     font-family: 'Spline Sans Mono', monospace;
+     padding-top: 0;
+     /* width: 50%; */
+ }
+ 
+ .item-profile {
+     margin: 40px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+ }
+ /*  
+ .profile-title {
+     padding: 20px;
+ } */
+ 
+ .card-container {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     background-color: rgba(0, 0, 0, 0.714);
+     /* width: 50%; */
+     margin: 20px;
+     padding: 10px;
+ }
+ 
+ .card-container-text {
+     text-align: center;
+     padding: 20px;
+ }
+ 
+ button:hover {
+     color: gray;
+ }

@@ -1,47 +1,38 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Button, Col, Row, Card, Container} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SearchRoom.css';
+import StarRating from './StarRating';
+import {SessionContext} from "./UserSession";
 
-export function SearchRoom({data}){
+export function SearchRoom({data}, user){
+
+    console.log("User (SearchRoom) " + JSON.stringify(user))
+    const session = useContext(SessionContext);
+    if(user === undefined || !(user instanceof String)) {
+        user = session.user
+        console.log("User (SearchRoom 2) " + user)
+    }
+
      return(
 
      <> 
- 
-{data.map((item)=> (
-<Container style={{alignContent:"center"}} key={item.id}>
-    
-    <Row className="justify-content-md-center">
-        <Col lg={6} sm={12} >
-            <Card classnMe="justify-content-md-center" style={{backgroundColor:"#808080"}} key={item.id}>
+ <div className="container-searchroom">
+{data.map((item)=> (   
 
-            <img variant="top" src={item.img} className="img-item" alt="item.room_name"/> 
-
-                <Card.Body >
-
-                    <Card.Title style={{color: "#F0F0F0"}}>{item.room_name}</Card.Title>
-                       
-                        <Card.Text style={{color: "#F0F0F0"}}>About the room: 
-                        </Card.Text> 
-                        <Card.Text style={{color: "#F0F0F0"}}>
-                        {item.about}</Card.Text> 
-                        <Card.Text style={{color: "#F0F0F0"}}>Cathegory: {item.theme}
-                        </Card.Text>
-                        
-                  <Link to={`/roomcard/${item.id}`}> <Button variant="outline-light" size="md">Learn More</Button></Link>
-                  <Link to="#"> <Button variant="outline-light" size="md">+ Add to My Rooms</Button></Link>
-
-                </Card.Body>
-            </Card>
-        </Col>
-        
-    </Row>
-
-   
-</Container>
-
- ))}
+<div className="card-container">
+                    <img variant="top" src={item.img} className="img-item" alt="item.room_name"/> 
+                    <div className="card-container-text">
+                        <div className="card-title">{item.room_name}</div>
+                        <div className="card-text">{item.about}</div>
+                        <div className="card-cath">{item.theme}</div>
+                        <Link to={`/roomcard/${item.id}`}> <button variant="outline-light" size="md">Learn More</button></Link>
+                        <Link to="#"> <button variant="outline-light" size="md">+ Add to My Rooms</button></Link>
+                        <StarRating room={item.id} user={user} />
+                    </div>
+                </div>))}
+                </div>
 </>
 
 );

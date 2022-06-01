@@ -7,6 +7,7 @@ import ('./Header.css')
 export const Header = () => {
 
   const session = useContext(SessionContext);
+  console.log("User (Header) " + session.user)
 
   return (
     <header>
