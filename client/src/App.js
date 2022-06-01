@@ -9,32 +9,33 @@ import {Profile} from "./components/Profile";
 import {Login, Logout} from './components/Login';
 import {Register} from './components/Register';
 import {Footer} from './components/Footer';
-import {getSessionCookie, SessionContext, setSessionCookie} from './components/UserSession.js'
+import {getSessionCookie, SessionContext} from './components/UserSession.js'
 //import { GlobalProvider } from "./context/GlobalState";
 
-function App() {
+const App = () => {
 
   const [session, setSession] = useState(getSessionCookie());
 
-  useEffect(() => {
-    setSessionCookie(getSessionCookie());
-  }, [session]);
+  const loginSuccess = () => {
+    setSession(getSessionCookie());
+  }
+
 
   return (
    <div className="container-app">
      <SessionContext.Provider value={session}>
-      <Router>
+      <Router forceRefresh={true}>
         <Header />
         <Routes>
           <Route exact path="/" element={<Landing/>}/>
           <Route path="/add" element={ <Add />}/>
           <Route path="/profile" element={ <Profile/>}/>
           <Route path="/roomcard/:id" element= {<RoomCard/>}/> 
-          <Route path="/login" element={ <Login />}/>
+          <Route path="/login" element={ <Login loginSuccess={loginSuccess} />}/>
           <Route path="/register" element={ <Register />}/>
         </Routes>
       </Router>
-      </SessionContext.Provider>
+     </SessionContext.Provider>
 
       <Footer/>
       </div>

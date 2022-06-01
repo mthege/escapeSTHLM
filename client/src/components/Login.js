@@ -1,13 +1,13 @@
-import { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import {setSessionCookie} from "./UserSession";
+import { useRef, useState, useEffect, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {setSessionCookie, getSessionCookie} from "./UserSession";
 import axios from 'axios';
 import Landing from './Landing';
 import Register from './Register';
 import './Register.css'
 const LOGIN_URL = 'http://localhost:5001/users/login';
 
-export function Login() {
+export function Login({loginSuccess}) {
 
     const userRef = useRef();
     const errRef = useRef();
@@ -17,45 +17,45 @@ export function Login() {
     const [pwd, setPwd] = useState("");
     const [errMsg, setErrMsg] = useState(false);
     const [success, setSuccess] = useState(false);
-    
-useEffect(() => {
 
-    userRef.current.focus();
-}, [])
+    useEffect(() => {
+        setErrMsg('')
+    }, [user, pwd]);
 
-useEffect(() => {
+    useEffect(() => {
+        if(success) {
+            console.log("Login success!")
+            loginSuccess()
+         }
+    }, [success]);
 
-    setErrMsg('')
-}, [user, pwd]);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-        const response = await axios.post(LOGIN_URL,
-            JSON.stringify({ user, pwd }),
-            {
-                headers: { 'Content-Type': 'application/json' }
-            }
-        );
-        setUser(user);
-        setSuccess(true);
-        setSessionCookie({user})
-
-    } catch (err) {
-        if (!err?.response) {
-            setErrMsg('No Server Response');
-        } else if (err.response?.status === 401) {
+        try {
+            const response = await axios.post(LOGIN_URL,
+                JSON.stringify({ user, pwd }),
+                {
+                    headers: { 'Content-Type': 'application/json' }
+                }
+            );
+            setUser(user);
+            setSessionCookie({user})
+            setSuccess(true);
+        } catch (err) {
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            } else if (err.response?.status === 401) {
             setErrMsg('Unauthorized');
-        } else {
-            setErrMsg('Login Failed');
+            } else {
+                setErrMsg('Login Failed');
+            }
+            errRef.current.focus();
         }
-        errRef.current.focus();
     }
-}
 
-return (
-    <div className="login">
+    return (
+        <div className="login">
         {success ? (
             <section>
                 <h1>You are logged in!</h1>
@@ -68,7 +68,7 @@ return (
             <section>
                 <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                 <h1>Sign In</h1>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={(e) => handleSubmit(e)}>
                     <label htmlFor="username">Username:</label>
                     <input
                         type="text"
@@ -100,7 +100,6 @@ return (
             </section>
         )}
     </div>
-)
-}
+    )}
 
 export default Login

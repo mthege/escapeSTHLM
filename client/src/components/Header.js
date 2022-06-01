@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import {SessionContext, setSessionCookie} from "./UserSession";
 
@@ -7,6 +7,16 @@ import ('./Header.css')
 export const Header = () => {
 
   const session = useContext(SessionContext);
+  const [user, setUser] = useState(session?.user);
+
+  useEffect(() => {
+     setUser(session?.user)
+  }, [session]);
+
+  const logout = () => {
+    setSessionCookie({});
+    setUser(undefined);
+  }
 
   return (
     <header>
@@ -21,8 +31,7 @@ export const Header = () => {
               <Link to="/">Home</Link>
             </li>
 
-            
-            { session && session.user ? 
+            { user ?
               <li>
                 <Link to="/profile" className="nav-links">
                   Profile
@@ -30,15 +39,15 @@ export const Header = () => {
               </li>
               : null }
 
-            { session && session.user ? 
+            { user ?
               <li>
-                <Link to="/" onClick={setSessionCookie({})} >
+                <Link to="/" onClick={() => logout()} >
                   Logout
                 </Link>
               </li>
               : null }
 
-            { !session || !session.user ? 
+            { !user ?
               <li>
                 <Link to="/login" className="nav-links">
                   Login
@@ -46,7 +55,7 @@ export const Header = () => {
               </li>
               : null }
 
-            { !session || !session.user ? 
+            { !user ?
               <li>
                 <Link to="/register" className="nav-links">
                   Register

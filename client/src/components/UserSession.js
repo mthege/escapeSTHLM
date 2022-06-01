@@ -2,8 +2,12 @@ import React from "react";
 import Cookies from "js-cookie";
 
 export const setSessionCookie = (session) => {
-    Cookies.remove("session");
-    Cookies.set("session", JSON.stringify(session), {expires: 1})
+    var oldSession = getSessionCookie()
+    console.log("Set Session Cookie");
+    if(JSON.stringify(oldSession) != JSON.stringify(session)) {
+        Cookies.remove("session");
+        Cookies.set("session", JSON.stringify(session), {expires: 1})
+    }
 };
 
 export const getSessionCookie = () => {
