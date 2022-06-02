@@ -10,6 +10,7 @@ import {Login, Logout} from './components/Login';
 import {Register} from './components/Register';
 import {Footer} from './components/Footer';
 import {getSessionCookie, SessionContext} from './components/UserSession.js'
+import {Boot} from './components/Boot';
 //import { GlobalProvider } from "./context/GlobalState";
 
 const App = () => {
@@ -25,7 +26,8 @@ const App = () => {
    <div className="container-app">
      <SessionContext.Provider value={session}>
       <Router forceRefresh={true}>
-        <Header />
+        {/* <Header /> */}
+        <Boot/>
         <Routes>
           <Route exact path="/" element={<Landing/>}/>
           <Route path="/add" element={ <Add />}/>

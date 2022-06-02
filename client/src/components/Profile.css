@@ -8,6 +8,7 @@
     color: rgb(220, 209, 209);
     font-family: 'Spline Sans Mono', monospace;
     padding-top: 0;
+    height: 100%;
 }
 
 .item-profile {

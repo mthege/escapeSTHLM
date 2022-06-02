@@ -1,6 +1,6 @@
 import express from 'express';
 const app = express();
-import { Users, registerUser, login, Rooms, rateRoom, getRating, getSavedRooms, saveRoom } from "./db.js";
+import { Users, registerUser, login, Rooms, rateRoom, getRating, getSavedRooms, saveRoom, deleteRating } from "./db.js";
 import cors from "cors";
 import bodyParser from "body-parser"
 
@@ -62,6 +62,14 @@ app.get("/savedrooms", (req, res) => {
     console.log("ROOMS: " + "User: " + user + "   " + JSON.stringify(getSavedRooms(user)))
     var rooms = Rooms.filter(room => getSavedRooms(user).map(item => item.room).includes(room.id))
     res.json(rooms);
+});
+
+app.delete("/users/:user/rooms/:room", (req, res) => {
+    const user = req.params.user;
+    const room = req.params.room;
+    console.log("ROOMS: " + "User: " + user + "   " + JSON.stringify(getSavedRooms(user)))
+    deleteRating(user, room);
+    res.send(200);
 });
 
 app.get("/", (req, res) => {

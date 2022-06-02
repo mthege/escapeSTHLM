@@ -39,7 +39,7 @@ await ratingDB.read();
 export async function rateRoom(user, room, rating) {
     var existing = ratingDB.data.find(rec => rec.user == user && rec.room == room)
     var existingIndex = ratingDB.data.indexOf(existing);
-    if(existingIndex >= 0) {
+    if (existingIndex >= 0) {
         ratingDB.data.splice(existingIndex, 1)
     }
 
@@ -64,6 +64,14 @@ export function getRating(user, room) {
 
 export function getSavedRooms(user) {
     return ratingDB.data.filter(rec => rec.user == user) || []
+}
+
+export function deleteRating(user, room) {
+    var target = ratingDB.data.find(rec => rec.user == user && rec.room == room)
+    var index = ratingDB.data.indexOf(target);
+    if (index >= 0) {
+        ratingDB.data.splice(index, 1)
+    }
 }
 
 export const Ratings = ratingDB.data;
