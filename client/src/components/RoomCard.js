@@ -6,7 +6,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import './RoomCard.css';
 
-
+/**
+ * 
+ * @returns the component that returns a page for the linked card 
+ * of the rooms in the search results
+ */
 export function RoomCard(){
 
     const [data, setData] = useState([]);
@@ -14,31 +18,26 @@ export function RoomCard(){
 
     useEffect(() => {
         const fetchData = async() => {
-            const res = await axios.get(`http://localhost:5000/rooms/${id}`);
+            const res = await axios.get(`http://localhost:5001/rooms/${id}`);
             setData(res.data);
         };
         fetchData();
     }, [id]);
 
-
     console.log("data " + data.id);
 
-
-
-    // let item = data.find(item => true);
-    //item = data;
     let img = `http://localhost:3000/${data.img}`;
 
      return (
        
         <>  
-      <Container style={{alignContent:"center"}} key={data.id}>
+      <Container style={{alignContent:"center"}, {backgroundColor: "#cbc8c8"}} key={data.id}>
     
-    <Row lg={1}className="justify-content-md-center">
-        <Col lg={4} >
+    <Row style={{padding: "20px"}}  lg={1} className="justify-content-md-center">
+        <Col lg={4}>
             <Card  style={{backgroundColor:"#808080"}} key={data.id}>
 
-            <img variant="top" className="img-item" src={img}/>
+            <img variant="top" className="img-item" alt="room" src={img}/>
 
                 <Card.Body >
 
@@ -48,7 +47,8 @@ export function RoomCard(){
                         {data.about}</Card.Text> 
                         <Card.Text style={{color: "#F0F0F0"}}>Cathegory: {data.theme}
                         </Card.Text>
-                  <Link to="/add"> <Button variant="outline-light" size="md">Back to search results</Button></Link>
+                        
+                  <Link to="/searchinput"> <Button variant="outline-light" size="md">Back to search results</Button></Link>
 
                 </Card.Body>
             </Card>
@@ -58,23 +58,7 @@ export function RoomCard(){
 
    
 </Container>
-{/*         
-        <Container>
-            <Row>
-                <Col lg={12}>
-                    <Card key={data.id}>
-                        <Card.Body>
-                            <Card.Title>{data.room_name}</Card.Title>
-                            <Card.Text>{data.theme}</Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                
-            </Row>
-        
-           
-        </Container>
-         */}
+
         </>
     );
 };

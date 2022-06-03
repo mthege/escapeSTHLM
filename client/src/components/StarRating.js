@@ -5,7 +5,12 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 import './StarRating.css'
 
-
+/**
+ * 
+ * @param {object} props contains loged in user and selected room 
+ * @returns a rating functionthat also saves the rated 
+ * room the the profile page
+ */
 const StarRating = (props)=>{
 
   let user = props.user
@@ -15,30 +20,26 @@ const StarRating = (props)=>{
 
   useEffect(() => {
     const fetchData = async() => {
-        const res = await axios.get(`http://localhost:5001/rating?user=${user}&room=${room}`);
+        const res = await axios.get(`http://localhost:5001/users/${user}/rooms/${room}/rating`);
         setRating(res.data.rating);
     };
     fetchData();
   }, [rating, room, user]);
 
+ 
   const handleSubmit = async (ratingValue) => {
-    setRating(ratingValue)
-
     try {
-      console.log("Time to post a rating... " + JSON.stringify({ user: user, room: room, rating: ratingValue }))
-      const response = await axios.post(`http://localhost:5001/rating`,
-          JSON.stringify({ user: user, room: room, rating: ratingValue }),
+      const response = await axios.post(`http://localhost:5001/users/${user}/rooms/${room}/rating`,
+          JSON.stringify({ rating: ratingValue }),
           {
               headers: { 'Content-Type': 'application/json' }
           }
       );
-      // TODO: remove console.logs before deployment
-      console.log("Rate successful " + JSON.stringify(response?.data));
-      //console.log(JSON.stringify(response))
+      setRating(ratingValue)
   } catch (err) {
       if (!err?.response) {
           console.log('No Server Response');
-      } else if (err.response?.status === 409) {
+      } else if (err.response?.status === 401) {
           console.log('Username Taken');
       } else {
           console.log('Failed to rate ' + err?.response?.status)
@@ -56,6 +57,7 @@ return(
     <label key={ratingValue}>
     <input type="radio" name="rating" value={ratingValue} 
       onClick={()=> handleSubmit(ratingValue)}
+      disabled={user===undefined}
         // onMouseOver={() => setHover(ratingValue)} 
         // onMouseOut={() =>setHover(null)}
     />

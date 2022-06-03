@@ -1,5 +1,5 @@
  .img-item {
-     width: 100%;
+     size: 100%;
      margin: 0;
      padding: 0;
  }
@@ -13,12 +13,12 @@
      justify-content: center;
      align-items: center;
      flex-direction: column;
-     background-color: rgba(0, 0, 0, 0.516);
+     background-color: rgba(255, 255, 255, 0.899);
+     border-radius: 20px;
      background-size: cover;
-     color: rgb(220, 209, 209);
+     color: rgb(209, 217, 220);
      font-family: 'Spline Sans Mono', monospace;
      padding-top: 0;
-     /* width: 50%; */
  }
  
  .item-profile {
@@ -42,6 +42,7 @@
      /* width: 50%; */
      margin: 20px;
      padding: 10px;
+     border-radius: 20px;
  }
  
  .card-container-text {
@@ -51,4 +52,18 @@
  
  button:hover {
      color: gray;
+ }
+ 
+ .card-title {
+     font-weight: bold;
+ }
+ 
+ .card-text {
+     font-size: 0.6rem;
+ }
+ 
+ @media screen and (mmin-width: 600px) {
+     .container-searchroom {
+         width: 100vw;
+     }
  }

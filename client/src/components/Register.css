@@ -9,12 +9,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 50px;
+    margin: 0;
+    background-color: rgb(3, 82, 82);
 }
 
 .login {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 50px;
+    background-color: rgb(3, 82, 82);
 }
 
 html {
@@ -45,6 +50,7 @@ section {
     justify-content: flex-start;
     padding: 1rem;
     background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
 }
 
 form {
@@ -53,11 +59,17 @@ form {
     justify-content: space-evenly;
     flex-grow: 1;
     padding-bottom: 1rem;
+    color: white;
 }
 
 a,
 a:visited {
     color: #fff;
+}
+
+p {
+    color: white;
+    font-size: 0.7rem;
 }
 
 input[type='text'],
@@ -96,6 +108,10 @@ button {
 .offscreen {
     position: absolute;
     left: -9999px;
+}
+
+h1 {
+    color: white;
 }
 
 .hide {

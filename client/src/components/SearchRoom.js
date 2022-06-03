@@ -1,10 +1,15 @@
 import React from 'react';
-import {Button, Col, Row, Card, Container} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SearchRoom.css';
 import StarRating from './StarRating';
-
+/**
+ * @param {string} data a list of all room
+ * @param {string} user loged in user
+ * @returns Renders a page with searchable rooms. 
+ * Rooms are displayed in a list and with component SearchInput makes it 
+ * possitble to filter the search resluts  
+ */
 export function SearchRoom({data, user}){
 
      return(
@@ -20,8 +25,8 @@ export function SearchRoom({data, user}){
                         <div className="card-text">{item.about}</div>
                         <div className="card-cath">{item.theme}</div>
                         <Link to={`/roomcard/${item.id}`}> <button variant="outline-light" size="md">Learn More</button></Link>
-                        <Link to="#"> <button variant="outline-light" size="md">+ Add to My Rooms</button></Link>
                         <StarRating room={item.id} user={user} />
+                        <p style={{size: "2rem"}}>You have to be logged in to rate a room</p>
                     </div>
                 </div>))}
                 </div>

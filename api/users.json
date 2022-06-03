@@ -1,18 +1,17 @@
-[
-  {
-    "username": "martina",
-    "password": "abc123"
-  },
-  {
-    "username": "erik",
-    "password": "abc123"
-  },
-  {
-    "username": "bastian",
-    "password": "bassebus"
-  },
-  {
-    "username": "kasper",
-    "password": "abc123"
-  }
+[{
+        "username": "elsa",
+        "password": "snögubbe"
+    },
+    {
+        "username": "martina",
+        "password": "abc123"
+    },
+    {
+        "username": "bastian",
+        "password": "bassebus"
+    },
+    {
+        "username": "kasper",
+        "password": "abc123"
+    }
 ]

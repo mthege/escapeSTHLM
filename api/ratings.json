@@ -1,15 +1,5 @@
 [
   {
-    "user": "martina",
-    "room": 2,
-    "rating": 3
-  },
-  {
-    "user": "martina",
-    "room": 1,
-    "rating": 1
-  },
-  {
     "user": "kasper",
     "room": 2,
     "rating": 3
@@ -23,5 +13,27 @@
     "user": "kasper",
     "room": 4,
     "rating": 5
+  },
+  {
+    "room": 3,
+    "rating": 5
+  },
+  {
+    "room": 2,
+    "rating": 3
+  },
+  {
+    "room": 1,
+    "rating": 4
+  },
+  {
+    "user": "erik",
+    "room": 2,
+    "rating": 2
+  },
+  {
+    "user": "martina",
+    "room": 1,
+    "rating": 3
   }
 ]

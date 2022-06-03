@@ -1,13 +1,15 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {SessionContext, setSessionCookie} from "./UserSession";
-import {Button, Col, Row, Card, Container} from 'react-bootstrap';
+import {SessionContext} from "./UserSession";
 import {Link} from 'react-router-dom'
 import StarRating from './StarRating';
 import axios from 'axios';
 import './Profile.css';
+/**
+ * 
+ * @returns function that handle loged in och loged out state. 
+ */
+export function Profile(){
 
-export function Profile(props){
-    ////
     const session = useContext(SessionContext);
     var user = session.user;
 
@@ -16,15 +18,13 @@ export function Profile(props){
 
     useEffect(() => {
         const fetchData = async() => {
-            const res = await axios.get(`http://localhost:5001/savedrooms?user=${user}`);
+            const res = await axios.get(`http://localhost:5001/users/${user}/rooms`);
             setData(res.data);
             setSize(res.data.length);
         };
         fetchData();
     }, [user, size]);
 
-    ///
-    
       const handleSubmit = async (room_id) => {
     
         try {
@@ -43,14 +43,11 @@ export function Profile(props){
       }
     }
 
-
-    ///
-
     return(
 
         <div className="container-profile">
             <div className="item-profile">
-                <div className="profile-title">{session.user}´s saved and rated rooms </div>
+                <div className="profile-title">{user}´s saved and rated rooms </div>
               
                 {data.map((item)=> (
                 <div className="card-container">
@@ -60,7 +57,6 @@ export function Profile(props){
                         <div className="card-text">{item.about}</div>
                         <div className="card-cath">{item.theme}</div>
                         <Link to={`/roomcard/${item.id}`}> <button variant="outline-light" size="md">Learn More</button></Link>
-                        <Link to="#"> <button variant="outline-light" size="md">+ Add to My Rooms</button></Link>
                         <StarRating room={item.id} user={user} />
                         <button onClick={()=> handleSubmit(item.id)}>Delete Room</button>
 

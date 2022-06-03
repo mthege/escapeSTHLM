@@ -4,8 +4,11 @@ import axios from 'axios';
 import Login from './Login';
 
 import './Register.css'
-//onst REGISTER_URL = '/register';
-
+/**
+ * 
+ * @returns A component with a registration form to submit a new user. 
+ * Hooks to make sure the entries meet the requirements. 
+ */
 export function Register() {
     const userRef = useRef();
     const errRef = useRef();
@@ -42,6 +45,12 @@ export function Register() {
         setErrMsg('');
     }, [user, pwd, matchPwd])
 
+
+    /**
+     * A function that handles the events when submitting 
+     * the form. Posts and saves it to the database
+     * @param {string} e 
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         // if button enabled with JS hack
@@ -73,7 +82,10 @@ export function Register() {
     }
 
     return (
+
+        
         <div className="register">
+             
             {success ? (
                 <section>
                     <h1>Success!</h1>
@@ -88,9 +100,7 @@ export function Register() {
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="username">
                             Username:
-                            {/* <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
-                            <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} /> */}
-                        </label>
+                            </label>
                         <input
                             type="text"
                             id="username"
@@ -105,7 +115,6 @@ export function Register() {
                             onBlur={() => setUserFocus(false)}
                         />
                         <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
-                            {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
                             4 to 24 characters.<br />
                             Must begin with a letter.<br />
                             Letters, numbers, underscores, hyphens allowed.
@@ -114,9 +123,7 @@ export function Register() {
 
                         <label htmlFor="password">
                             Password:
-                            {/* <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
-                            <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} /> */}
-                        </label>
+                            </label>
                         <input
                             type="password"
                             id="password"
@@ -129,7 +136,6 @@ export function Register() {
                             onBlur={() => setPwdFocus(false)}
                         />
                         <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
-                            {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
                             8 to 24 characters.<br />
                             Must include uppercase and lowercase letters, a number and a special character.<br />
                             Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
@@ -138,9 +144,7 @@ export function Register() {
 
                         <label htmlFor="confirm_pwd">
                             Confirm Password:
-                            {/* <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? "valid" : "hide"} />
-                            <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? "hide" : "invalid"} /> */}
-                        </label>
+                           </label>
                         <input
                             type="password"
                             id="confirm_pwd"
@@ -153,7 +157,6 @@ export function Register() {
                             onBlur={() => setMatchFocus(false)}
                         />
                         <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
-                            {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
                             Must match the first password input field.
                         </p>
 
@@ -162,7 +165,6 @@ export function Register() {
                     <p>
                         Already registered?<br />
                         <span className="line">
-                            {/*put router link here*/}
                             <Link to ="/login" element={Login}>Sign In</Link>
                         </span>
                     </p>
